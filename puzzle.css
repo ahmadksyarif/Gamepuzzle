@@ -1,0 +1,65 @@
+a{
+	padding: 10px;
+	margin-left: 10px;
+	color:#092551;
+	text-decoration:none;
+	position: center;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+body{
+	padding: 0px;
+	margin: 0px;
+	background-image: url(newplay.jpg);
+	background-position: center;
+	background-size: auto; cover;
+	background-repeat:no-repeat;
+	padding-top:5px;	
+	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+	height:100%;
+	width:100%;
+	padding:center;
+	text-align:center;
+}
+
+#puzzle_container{
+	text-align:center;
+	background-position: center;
+	background-size: auto; cover;
+	background-repeat:no-repeat;
+	line-height:350px;
+	vertical-align:center;
+	border:10px double #000000;	/* garis kotak puzzle*/
+	position:relative;
+	margin-left: 31%;
+	color: #FFFFFF;
+	background-color: #707070;
+	width: 350px;
+	height: 350px;
+}
+
+#puzzle_container .square{
+	overflow:hidden;
+	border-left:0px solid #FFF;
+	border-top:0px solid #FFF;
+	position:absolute;
+	object-position: center;
+}
+
+.activeImageIndicator{
+	border:1px solid #FF0000;
+	position:absolute;
+	z-index:10000;
+}
+
+.revealedImage{
+	position:absolute;
+	left:0px;
+	opacity:0;
+	filter:alpha(opacity=50);
+	top:0px;
+	z-index:50000;
+}
