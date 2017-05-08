@@ -1,9 +1,21 @@
 a{
-	padding: 10px;
+	padding: 5px;
 	margin-left: 10px;
 	color:#092551;
 	text-decoration:none;
-	position: center;
+	position:center;
+}
+
+h1{
+	padding-top: 3px;
+	background-color: #00ADAD;
+	background-position: center;
+}
+
+h2{
+	padding-bottom:0px;
+	background-color: #00ADAD;
+	background-position: center;
 }
 
 a:hover{
@@ -13,8 +25,9 @@ a:hover{
 body{
 	padding: 0px;
 	margin: 0px;
-	background-image: url(newplay.jpg);
+	/* background-image: url(newplay.jpg); */
 	background-position: center;
+	background-color: #001C5A
 	background-size: auto; cover;
 	background-repeat:no-repeat;
 	padding-top:5px;	
@@ -32,7 +45,7 @@ body{
 	background-repeat:no-repeat;
 	line-height:350px;
 	vertical-align:center;
-	border:10px double #000000;	/* garis kotak puzzle*/
+	border:7px double #000000;	/* garis kotak puzzle*/
 	position:relative;
 	margin-left: 31%;
 	color: #FFFFFF;
