@@ -1,8 +1,6 @@
-	
-
-	var puzzleImages = ['images/image1.jpg','images/images2.jpg','images/image3.jpg','images/image4.png','images/image5.png','images/image6.jpg','images/image7.jpg','images/image8.jpg','images/image9.png','images/images10.png','images/pemandangan1.jpg'];	// Array of images to choose from
-	var rows = 3;
-	var cols = 3;
+	var puzzleImages = ['images/1.jpg','images/2.jpg','images/3.png','images/4.png','images/5.jpg','images/6.jpg','images/7.jpg','images/8.png','images/9.jpg','images/10.png','images/11.jpg'];	// Array of images to choose from
+	var rows = 3; /* nilai awal */
+	var cols = 3; /* nilai awal */
 
 	var imageArray = new Array();
 	var imageInUse = false;
@@ -11,73 +9,73 @@
 	var activeSquare = false; 	// Reference to active puzzle square
 		var squareArray = new Array(); // Array with references to all the squares
 
-	
-	var emptySquare_x;
-	var emptySquare_y;
-	
-	var colWidth;
-	var rowHeight;
-	
-	var gameInProgress = false;
-	
-	var revealedImage = false;
-	
-	for(var no=0;no<puzzleImages.length;no++){
-		imageArray[no] = new Image();
-		imageArray[no].src = puzzleImages[no];	
-	}
-	
-	function initPuzzle()
-	{
-		gameInProgress = false;
-		var tmpInUse = imageInUse;
-		imageInUse = imageArray[Math.floor(Math.random() * puzzleImages.length)];
-		if(imageInUse==tmpInUse && puzzleImages.length>1)
-			initPuzzle();
-		else{
-			puzzleContainer = document.getElementById('puzzle_container');
-			getImageWidth();
+
+		var emptySquare_x;
+		var emptySquare_y;
+
+		var colWidth;
+		var rowHeight;
+
+		var gameInProgress = false;
+
+		var revealedImage = false;
+
+		for(var no=0;no<puzzleImages.length;no++){
+			imageArray[no] = new Image();
+			imageArray[no].src = puzzleImages[no];	
 		}
-	}
-	
-	function getImageWidth()
-	{
-		if(imageInUse.width>0){
-			startPuzzle();	
-		}else{
-			setTimeout('getImageWidth()',100);	
-		}
-	}
-	
-	function play()
-	{
-		gameInProgress = true;
-		var currentRow = cols-1;
-		var currentCol = rows-1;
-		
-		document.getElementById('revealedImage').style.display='none';
-		
-		for(var no=0;no<rows;no++){
-			for(var no2=0;no2<cols;no2++){
-				if(no<rows.length || no2<cols.length){
-					var el = document.getElementById('square_' + no2 + '_' + no);
-					if(el){
-						el.style.left = (no2 * colWidth) + (no2) + 'px';
-						el.style.top = (no * rowHeight) + (no) + 'px';	
-					}else{
-						initPuzzle();
-						return;
-					}
-				}			
+
+		function initPuzzle() /* Pemanggilan Gambar untuk digunakan pada puzzle container */
+		{
+			gameInProgress = false;
+			var tmpInUse = imageInUse;
+			imageInUse = imageArray[Math.floor(Math.random() * puzzleImages.length)];
+			if(imageInUse==tmpInUse && puzzleImages.length>1)
+				initPuzzle();
+			else{
+				puzzleContainer = document.getElementById('puzzle_container');
+				getImageWidth();
 			}
-		}		
-		
-		
-		var lastPos=false;
-		var countMoves = 0;
-		while(countMoves<(50*cols*rows)){
-			var dir = Math.floor(Math.random()*4);
-			var readyToMove = false;
+		}
+
+		function getImageWidth() /*  */
+		{
+			if(imageInUse.width>0){
+				startPuzzle();	
+			}else{
+				setTimeout('getImageWidth()',100);	
+			}
+		}
+
+		function play()
+		{
+			gameInProgress = true;
+			var currentRow = cols-1;
+			var currentCol = rows-1;
+
+			document.getElementById('revealedImage').style.display='none';
+
+			for(var no=0;no<rows;no++){
+				for(var no2=0;no2<cols;no2++){
+					if(no<rows.length || no2<cols.length){
+						var el = document.getElementById('square_' + no2 + '_' + no);
+						if(el){
+							el.style.left = (no2 * colWidth) + (no2) + 'px';
+							el.style.top = (no * rowHeight) + (no) + 'px';	
+						}else{
+							initPuzzle();
+							return;
+						}
+					}			
+				}
+			}		
+
+
+			var lastPos=false;
+			var countMoves = 0;
+			while(countMoves<(50*cols*rows)){
+				var dir = Math.floor(Math.random()*4);
+				var readyToMove = false;
 			if(dir==0 && currentRow>0 && lastPos!=1){	// Moving peice down
 				currentRow = currentRow-1;	
 				readyToMove = true;
@@ -129,7 +127,7 @@
 		}	
 		
 		if(correctSquares == ((cols * rows) -1)){
-			document.getElementById('messageDiv').innerHTML = '<h2>Fantastic! You did it !!</h2>';
+			document.getElementById('messageDiv').innerHTML = '<h2>Fantastic! You did it !</h2>';
 			gameInProgress = false;
 			revealImage();
 			
@@ -272,4 +270,38 @@
 		
 		
 	}
-	window.onload = initPuzzle;
+	function myTest(e,atas,kiri,bawah,kanan)
+	{
+		if (!e) e=window.event;
+		var selectArrowKey;
+		switch(e.keyCode)
+		{
+			case 37:
+		    //kiri.
+		    selectArrowKey = kiri;
+		    break;
+
+		    case 38:
+		    //atas.
+		    selectArrowKey = atas;
+		    break;
+
+		    case 39:
+		    //kanan.
+		    selectArrowKey = kanan;
+		    break;
+
+		    case 40:
+		    //bawah.
+		    selectArrowKey = bawah;
+		    break;
+		}
+		if (!selectArrowKey) return;
+		var controls = document.getElementsByName(selectArrowKey);
+		if (!controls) return;
+		if (controls.length != 1) return;
+		controls[0].focus();
+}
+
+
+window.onload = initPuzzle;
